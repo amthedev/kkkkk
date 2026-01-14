@@ -66,3 +66,9 @@ node_modules/
 # Temporary files
 *.tmp
 *.temp
+
+# Large video files (use external hosting)
+*.mp4
+*.avi
+*.mov
+*.mkv

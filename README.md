@@ -17,7 +17,20 @@ Meusite/
 
 ## Como Usar
 
-1. **Personalização**:
+### Executando o Servidor
+
+**Opção 1: Script de Inicialização (Recomendado)**
+1. Execute `start_server.bat` (Windows) - requer privilégios de administrador para porta 80
+2. Acesse http://localhost no seu navegador
+
+**Opção 2: Manual**
+1. Abra o terminal na pasta `backend/`
+2. Execute `python app.py`
+3. Acesse http://localhost no seu navegador
+
+**Nota**: A aplicação está configurada para rodar na porta 80 com host 0.0.0.0, tornando-a acessível na rede local.
+
+### 1. **Personalização**:
    - Substitua `SEUNUMERO` no arquivo `js/script.js` pelo seu número de WhatsApp (apenas números, sem espaços ou caracteres especiais).
    - Adicione suas imagens na pasta `img/` e vídeos na pasta `videos/`.
    - Atualize as informações de contato na seção de rodapé do `index.html`.

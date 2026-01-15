@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamandaréVision - Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a class="logo" href="/" aria-label="TamandaréVision">
+            <img src="images/WhatsApp_Image_2026-01-14_at_21.51.55-removebg-preview.png" alt="TamandaréVision">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#agendamentos">Agendamentos</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="/">Voltar ao site</a></li>
+        </ul>
+    </nav>
+
+    <section id="agendamentos" class="services" style="padding-top: 140px;">
+        <div class="container">
+            <h2>Painel Admin</h2>
+
+            <div class="service-card" style="max-width: 700px; margin: 0 auto 30px; text-align:left;">
+                <h3 style="margin-bottom: 10px;">Acesso</h3>
+                <p style="margin-bottom: 15px;">Informe o token de admin para carregar e editar os dados.</p>
+                <div class="form-row">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="admin-token">Token</label>
+                        <input id="admin-token" type="password" placeholder="Ex.: admin">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0; display:flex; align-items:flex-end;">
+                        <button id="btn-salvar-token" class="btn" type="button" style="width:100%;">Salvar Token</button>
+                    </div>
+                </div>
+                <p id="admin-status" style="margin-top: 15px; display:none;"></p>
+            </div>
+
+            <div class="service-card" style="text-align:left;">
+                <h3 style="margin-bottom: 10px;">Pedidos de orçamento / agendamentos</h3>
+                <p style="margin-bottom: 20px;">Você pode alterar o status e excluir registros.</p>
+                <div style="overflow:auto;">
+                    <table style="width:100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">ID</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Nome</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">WhatsApp</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Data/Hora</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Serviço</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Status</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="agendamentos-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Portfólio</h2>
+
+            <div class="service-card" style="text-align:left; margin-bottom: 30px;">
+                <h3 style="margin-bottom: 10px;">Adicionar / editar item</h3>
+                <form id="portfolio-form">
+                    <input type="hidden" id="portfolio-id" value="">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="portfolio-categoria">Categoria</label>
+                            <select id="portfolio-categoria" required>
+                                <option value="drone">Drone</option>
+                                <option value="fotografia">Fotografia</option>
+                                <option value="sites">Sites</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="portfolio-media-tipo">Mídia</label>
+                            <select id="portfolio-media-tipo" required>
+                                <option value="video">Vídeo</option>
+                                <option value="image">Imagem</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-titulo">Título</label>
+                        <input id="portfolio-titulo" type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-descricao">Descrição</label>
+                        <input id="portfolio-descricao" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-media-src">Arquivo/URL (media_src)</label>
+                        <input id="portfolio-media-src" type="text" placeholder="Ex.: images/zaidan.mp4" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-file-upload">Ou fazer upload de arquivo</label>
+                        <input id="portfolio-file-upload" type="file" accept="image/*,video/*">
+                        <small style="color: #666; font-size: 0.9em;">Imagens (jpg, png, gif) ou vídeos (mp4, webm)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-link">Link (opcional)</label>
+                        <input id="portfolio-link" type="text" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio-ativo">Ativo</label>
+                        <select id="portfolio-ativo">
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <button class="btn" type="submit" style="width:100%;">Salvar Item</button>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <button id="portfolio-cancelar" class="btn btn-outline" type="button" style="width:100%; border-color: var(--secondary-color); color: var(--secondary-color);">Cancelar edição</button>
+                        </div>
+                    </div>
+                    <p id="portfolio-status" style="margin-top: 15px; display:none;"></p>
+                </form>
+            </div>
+
+            <div class="service-card" style="text-align:left;">
+                <h3 style="margin-bottom: 10px;">Itens cadastrados</h3>
+                <div style="overflow:auto;">
+                    <table style="width:100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">ID</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Categoria</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Título</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Mídia</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Ativo</th>
+                                <th style="text-align:left; padding:10px; border-bottom:1px solid #eee;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="portfolio-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

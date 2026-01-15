@@ -1,3 +1,24 @@
+// Menu hambúrguer para mobile
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+});
+
 // Modal de vídeo
 function createVideoModal() {
     const modal = document.createElement('div');
@@ -51,58 +72,249 @@ function closeModal() {
     }
 }
 
-// Event listeners para botões de vídeo
-document.addEventListener('DOMContentLoaded', function() {
-    // Botões de play no portfólio
-    const playButtons = document.querySelectorAll('.view-video');
-    playButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const portfolioItem = this.closest('.portfolio-item');
-            const video = portfolioItem.querySelector('video');
-            if (video) {
-                const videoSrc = video.querySelector('source').src;
-                openModal(videoSrc);
-            }
-        });
-    });
-    
-    // Botões de expandir imagem
-    const expandButtons = document.querySelectorAll('.view-image');
-    expandButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const portfolioItem = this.closest('.portfolio-item');
-            const img = portfolioItem.querySelector('img');
-            if (img) {
-                // Criar modal para imagem
-                const modal = document.createElement('div');
-                modal.className = 'video-modal';
-                modal.innerHTML = `
-                    <div class="video-modal-content">
-                        <span class="video-modal-close">&times;</span>
-                        <img src="${img.src}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain;">
+function apiBase() {
+    return window.location.protocol.startsWith('http') ? '' : 'http://localhost:5000';
+}
+
+function escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value == null ? '' : String(value);
+    return div.innerHTML;
+}
+
+function renderMenuOnlineCard() {
+    const imgSrc = 'images/ChatGPT%20Image%2014%20de%20jan.%20de%202026,%2021_06_23.png';
+    const linkUrl = 'https://menuonline.squareweb.app';
+    return `
+        <div class="portfolio-item animate-on-scroll" data-category="sites">
+            <div class="portfolio-img">
+                <img src="${imgSrc}" alt="Menu Online" loading="lazy">
+
+                <div class="menu-preview">
+                    <div class="menu-header">
+                        <h4>🌐 Projeto</h4>
+                        <p>Menu Online Digital</p>
                     </div>
-                `;
-                document.body.appendChild(modal);
-                
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        document.body.removeChild(modal);
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-                
-                modal.querySelector('.video-modal-close').addEventListener('click', function() {
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <span class="item-name">Clique para ver</span>
+                            <span class="item-price">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-overlay">
+                    <a href="${linkUrl}" class="view-project" title="Visualizar Site" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <h3>Menu Online Digital</h3>
+                <p>Sistema de cardápio para restaurantes</p>
+                <span class="portfolio-category">Sites</span>
+            </div>
+        </div>
+    `;
+}
+
+function renderPortfolioItem(item) {
+    const titulo = escapeHtml(item.titulo || '');
+    const descricao = escapeHtml(item.descricao || '');
+    const categoriaLabel = escapeHtml((item.categoria || '').charAt(0).toUpperCase() + (item.categoria || '').slice(1));
+    const src = escapeHtml(item.media_src || '');
+    const linkUrl = escapeHtml(item.link_url || '#');
+
+    let mediaHtml = '';
+    let overlayActionHtml = '';
+
+    if (item.media_tipo === 'video') {
+        // Se tiver link_url (YouTube), usa embed clicável, senão carrega vídeo local
+        if (linkUrl && linkUrl !== '#') {
+            mediaHtml = `
+                <div class="video-container">
+                    <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <iframe 
+                            src="https://www.youtube.com/embed/${linkUrl.split('/').pop()}"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </a>
+                </div>
+            `;
+        } else {
+            mediaHtml = `
+                <video controls preload="metadata">
+                    <source src="${src}" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+            `;
+        }
+        overlayActionHtml = ''; // Remove botões de overlay para vídeos
+    } else if (item.media_tipo === 'image') {
+        mediaHtml = `<img src="${src}" alt="${titulo}">`;
+        overlayActionHtml = `
+            <button type="button" class="view-image" title="Ampliar Imagem">
+                <i class="fas fa-expand"></i>
+            </button>
+        `;
+    } else {
+        mediaHtml = `
+            <div class="menu-preview">
+                <div class="menu-header">
+                    <h4>🌐 Projeto</h4>
+                    <p>${titulo}</p>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Clique para ver</span>
+                        <span class="item-price">→</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        overlayActionHtml = `
+            <a href="${linkUrl}" class="view-project" title="Visualizar Site" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-link"></i>
+            </a>
+        `;
+    }
+
+    return `
+        <div class="portfolio-item animate-on-scroll" data-category="${escapeHtml(item.categoria || '')}">
+            <div class="portfolio-img">
+                ${mediaHtml}
+                <div class="portfolio-overlay">
+                    ${overlayActionHtml}
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <h3>${titulo}</h3>
+                <p>${descricao}</p>
+                <span class="portfolio-category">${categoriaLabel}</span>
+            </div>
+        </div>
+    `;
+}
+
+async function carregarPortfolio() {
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
+    try {
+        const res = await fetch(`${apiBase()}/api/portfolio`);
+        const itens = await res.json();
+        if (!res.ok || !Array.isArray(itens)) {
+            return;
+        }
+        grid.innerHTML = [renderMenuOnlineCard(), ...itens.map(renderPortfolioItem)].join('');
+        animateOnScroll();
+    } catch (_) {
+        return;
+    }
+}
+
+document.addEventListener('click', function(e) {
+    const videoBtn = e.target.closest('.view-video');
+    if (videoBtn) {
+        e.preventDefault();
+        e.stopPropagation(); // Evita qualquer comportamento padrão
+        const portfolioItem = videoBtn.closest('.portfolio-item');
+        
+        // Tenta encontrar o vídeo local primeiro
+        const video = portfolioItem ? portfolioItem.querySelector('video') : null;
+        if (video) {
+            const source = video.querySelector('source');
+            const videoSrc = source ? source.src : '';
+            openModal(videoSrc);
+            return;
+        }
+        
+        // Se não encontrar vídeo local, procura o iframe do YouTube
+        const iframe = portfolioItem ? portfolioItem.querySelector('iframe') : null;
+        if (iframe) {
+            const modal = document.createElement('div');
+            modal.className = 'video-modal';
+            modal.innerHTML = `
+                <div class="video-modal-content">
+                    <span class="video-modal-close">&times;</span>
+                    <iframe 
+                        src="${iframe.src}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        style="width: 100%; height: 80vh; border: none;">
+                    </iframe>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', function(ev) {
+                if (ev.target === modal) {
                     document.body.removeChild(modal);
                     document.body.style.overflow = 'auto';
-                });
-                
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+                }
+            });
+            document.body.style.overflow = 'hidden';
+        }
+        return;
+    }
+
+    // Novo: clique no overlay vazio de vídeos
+    const videoOverlay = e.target.closest('.portfolio-overlay');
+    if (videoOverlay && !e.target.closest('.view-project')) {
+        e.preventDefault();
+        e.stopPropagation();
+        const portfolioItem = videoOverlay.closest('.portfolio-item');
+        
+        // Verifica se é um item de vídeo com link YouTube
+        const videoLink = portfolioItem ? portfolioItem.querySelector('.video-link') : null;
+        if (videoLink) {
+            window.open(videoLink.href, '_blank', 'noopener,noreferrer');
+            return;
+        }
+        
+        // Se não for vídeo com link, procura iframe do YouTube
+        const iframe = portfolioItem ? portfolioItem.querySelector('iframe') : null;
+        if (iframe) {
+            // Extrai o ID do vídeo do src do iframe
+            const videoId = iframe.src.match(/\/embed\/([^?]+)/);
+            if (videoId && videoId[1]) {
+                window.open(`https://youtu.be/${videoId[1]}`, '_blank', 'noopener,noreferrer');
             }
-        });
-    });
+        }
+        return;
+    }
+
+    const imageBtn = e.target.closest('.view-image');
+    if (imageBtn) {
+        e.preventDefault();
+        e.stopPropagation(); // Evita qualquer comportamento padrão
+        const portfolioItem = imageBtn.closest('.portfolio-item');
+        const img = portfolioItem ? portfolioItem.querySelector('img') : null;
+        if (img) {
+            const modal = document.createElement('div');
+            modal.className = 'video-modal';
+            modal.innerHTML = `
+                <div class="video-modal-content">
+                    <span class="video-modal-close">&times;</span>
+                    <img src="${img.src}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain;">
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', function(ev) {
+                if (ev.target === modal) {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            modal.querySelector('.video-modal-close').addEventListener('click', function() {
+                document.body.removeChild(modal);
+                document.body.style.overflow = 'auto';
+            });
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
 });
 
 // Navegação suave para links internos
@@ -121,29 +333,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Formulário de agendamento
-const bookingForm = document.getElementById('booking-form');
-if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Coletar dados do formulário
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            service: document.getElementById('service').value,
-            details: document.getElementById('details').value
-        };
-        
-        // Aqui você pode adicionar o código para enviar os dados para um servidor
-        // Por enquanto, vamos apenas mostrar um alerta
-        alert('Solicitação de orçamento enviada com sucesso! Entraremos em contato em breve.');
-        bookingForm.reset();
-    });
-}
 
 // Adicionar classe ativa ao menu de navegação ao rolar
 window.addEventListener('scroll', function() {
@@ -244,6 +433,7 @@ function initVideoCarousel() {
 
 // Inicializar quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
+    createVideoModal();
     // Tenta reproduzir o vídeo (pode ser bloqueado por políticas de autoplay)
     const video = document.querySelector('.video-background');
     if (video) {
@@ -302,7 +492,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const filterValue = this.getAttribute('data-filter');
             
-            portfolioItems.forEach(item => {
+            const currentPortfolioItems = document.querySelectorAll('.portfolio-item');
+            currentPortfolioItems.forEach(item => {
                 if (filterValue === 'todos' || item.getAttribute('data-category') === filterValue) {
                     item.style.display = 'block';
                     // Adiciona uma animação suave
@@ -314,15 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Adiciona um ouvinte para os links do portfólio para prevenir o comportamento padrão
-    const portfolioLinks = document.querySelectorAll('.portfolio-overlay a');
-    portfolioLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Aqui você pode adicionar a lógica para abrir o lightbox ou modal
-            console.log('Abrir projeto: ' + this.getAttribute('title'));
-        });
-    });
+    carregarPortfolio();
 });
 
 // Botão do WhatsApp

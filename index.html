@@ -46,7 +46,9 @@
             <div class="overlay"></div>
         </div>
         <nav>
-            <div class="logo">Tamandaré<span>Vision</span></div>
+            <a class="logo" href="#inicio" aria-label="TamandaréVision">
+                <img src="images/WhatsApp_Image_2026-01-14_at_21.51.55-removebg-preview.png" alt="TamandaréVision">
+            </a>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#servicos">Serviços</a></li>
@@ -54,12 +56,17 @@
                 <li><a href="#orcamento">Orçamento</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
         <div class="hero-content">
             <h1>Tamandaré do Alto</h1>
             <p>Filmagens aéreas e sites profissionais</p>
             <div class="hero-buttons">
-                <a href="#agendamento" class="btn"><i class="fas fa-video"></i> Agendar Filmagem</a>
+                <a href="#agendamento" class="btn-agendar"><i class="fas fa-video"></i> Agendar Filmagem</a>
                 <a href="#contato" class="btn btn-outline"><i class="fas fa-laptop-code"></i> Orçamento de Site</a>
             </div>
         </div>
@@ -68,7 +75,7 @@
     <!-- Seção de Promoção -->
     <section class="promo">
         <div class="container">
-            <img src="images/ChatGPT%20Image%207%20de%20nov.%20de%202025%2C%2016_48_41.png" alt="Promoção especial" class="promo-image">
+            <img src="images/gay.png" alt="Promoção especial" class="promo-image">
         </div>
     </section>
 
@@ -79,33 +86,18 @@
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-video"></i>
-                    <h3>Filmagem Aérea</h3>
-                    <p>Imagens deslumbrantes das praias, eventos e pontos turísticos</p>
-                    <ul class="service-features">
-                        <li>Eventos na praia</li>
-                        <li>Imóveis com vista para o mar</li>
-                        <li>Passeios turísticos</li>
-                    </ul>
+                    <h3>Filmagens com Drone</h3>
+                    <p>Capturamos imagens aéreas espetaculares para eventos, imóveis e promoções.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Fotografia Profissional</h3>
+                    <p>Registro de momentos especiais com qualidade e criatividade.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-laptop-code"></i>
                     <h3>Criação de Sites</h3>
-                    <p>Sites modernos e responsivos para seu negócio</p>
-                    <ul class="service-features">
-                        <li>Pousadas e hotéis</li>
-                        <li>Restaurantes e bares</li>
-                        <li>Serviços turísticos</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-camera-retro"></i>
-                    <h3>Fotografia</h3>
-                    <p>Registros profissionais da sua cidade</p>
-                    <ul class="service-features">
-                        <li>Paisagens</li>
-                        <li>Eventos</li>
-                        <li>Produtos e serviços</li>
-                    </ul>
+                    <p>Sites modernos e responsivos para destacar seu negócio online.</p>
                 </div>
             </div>
         </div>
@@ -114,124 +106,19 @@
     <!-- Seção de Portfólio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="todos">Todos</button>
-                <button class="filter-btn" data-filter="drone">Filmagens com Drone</button>
-                <button class="filter-btn" data-filter="fotografia">Fotografia</button>
-                <button class="filter-btn" data-filter="sites">Sites</button>
-            </div>
-            
-            <div class="portfolio-grid">
-                <!-- Item 1 -->
-                <div class="portfolio-item animate-on-scroll" data-category="drone">
-                    <div class="portfolio-img">
-                        <video controls preload="metadata">
-                            <source src="images/FIMI0031.MP4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-project" title="Visualizar Projeto">
-                                <i class="fas fa-search-plus"></i>
-                            </a>
-                            <a href="#" class="view-video" title="Assistir Vídeo">
-                                <i class="fas fa-play"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Filmagem de Imóveis em Tamandaré</h3>
-                        <p>Filmagem aérea em 4K - Pernambuco</p>
-                        <span class="portfolio-category">Drone</span>
-                    </div>
-                </div>
-                
-                <!-- Item 2 -->
-                <div class="portfolio-item animate-on-scroll" data-category="fotografia">
-                    <div class="portfolio-img">
-                        <img src="images/3963269788d0fe908af98a5d3e30c814.jpg" alt="Paisagem de Tamandaré">
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-project" title="Visualizar Projeto">
-                                <i class="fas fa-search-plus"></i>
-                            </a>
-                            <a href="#" class="view-image" title="Ampliar Imagem">
-                                <i class="fas fa-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Paisagem de Tamandaré</h3>
-                        <p>Fotografia profissional</p>
-                        <span class="portfolio-category">Fotografia</span>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="portfolio-item animate-on-scroll" data-category="sites">
-                    <div class="portfolio-img">
-                        <div class="menu-preview">
-                            <div class="menu-header">
-                                <h4>🍽️ Menu Online</h4>
-                                <p>Restaurante Beira Mar</p>
-                            </div>
-                            <div class="menu-items">
-                                <div class="menu-item">
-                                    <span class="item-name">Moqueca de Peixe</span>
-                                    <span class="item-price">R$ 68,00</span>
-                                </div>
-                                <div class="menu-item">
-                                    <span class="item-name">Camarão ao Alho</span>
-                                    <span class="item-price">R$ 78,00</span>
-                                </div>
-                                <div class="menu-item">
-                                    <span class="item-name">Tapioca Especial</span>
-                                    <span class="item-price">R$ 18,00</span>
-                                </div>
-                                <div class="menu-item">
-                                    <span class="item-name">Suco Natural</span>
-                                    <span class="item-price">R$ 12,00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-project" title="Visualizar Site">
-                                <i class="fas fa-link"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Menu Online Digital</h3>
-                        <p>Sistema de cardápio para restaurantes</p>
-                        <span class="portfolio-category">Desenvolvimento Web</span>
-                    </div>
-                </div>
-                
-                <!-- Item 4 -->
-                <div class="portfolio-item animate-on-scroll" data-category="drone">
-                    <div class="portfolio-img">
-                        <video controls preload="metadata">
-                            <source src="images/zaidan.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-project" title="Visualizar Projeto">
-                                <i class="fas fa-search-plus"></i>
-                            </a>
-                            <a href="#" class="view-video" title="Assistir Vídeo">
-                                <i class="fas fa-play"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Filmagem de Imóveis</h3>
-                        <p>Filmagem aérea profissional</p>
-                        <span class="portfolio-category">Drone</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="#" class="btn">Ver Mais Projetos</a>
-            </div>
+           <div class="portfolio-filters">
+ 				<button class="filter-btn active" data-filter="todos">Todos</button>
+ 				<button class="filter-btn" data-filter="drone">Filmagens com Drone</button>
+ 				<button class="filter-btn" data-filter="fotografia">Fotografia</button>
+ 				<button class="filter-btn" data-filter="sites">Sites</button>
+ 			</div>
+ 			
+			<div class="portfolio-grid" id="portfolio-grid"></div>
+ 			
+ 			<div style="text-align: center; margin-top: 50px;">
+ 				<a href="https://github.com/amthedev" class="btn" target="_blank" rel="noopener noreferrer">Ver Mais Projetos</a>
+ 			</div>
+           </div>
         </div>
         
         <!-- Efeito de onda decorativa -->
@@ -247,43 +134,45 @@
         <div class="container">
             <h2>Agende seu serviço</h2>
             <form id="booking-form" onsubmit="enviarAgendamento(event)">
-                <div class="form-group">
-                    <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">WhatsApp:</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="telefone">WhatsApp:</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
-                </div>
-                <div class="form-group">
-                    <label for="data">Data desejada:</label>
-                    <input type="date" id="data" name="data" required>
-                </div>
-                <div class="form-group">
-                    <label for="hora">Horário:</label>
-                    <input type="time" id="hora" name="hora" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data">Data desejada:</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora">Horário:</label>
+                        <input type="time" id="hora" name="hora" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="servico">Tipo de Serviço:</label>
                     <select id="servico" name="servico" required>
                         <option value="">Selecione o serviço desejado...</option>
-                        <option value="Site Institucional">Site Institucional</option>
-                        <option value="Loja Virtual (E-commerce)">Loja Virtual</option>
-                        <option value="Aplicativo Mobile">Aplicativo Mobile</option>
-                        <option value="Landing Page">Landing Page</option>
-                        <option value="Sistema Web">Sistema Web</option>
-                        <option value="Filmagem com Drone">Filmagem com Drone</option>
-                        <option value="Fotografia Aérea">Fotografia Aérea</option>
-                        <option value="Edição de Vídeo">Edição de Vídeo</option>
-                        <option value="Marketing Digital">Marketing Digital</option>
+                        <option value="Filmagem Aérea (Drone)">Filmagem Aérea (Drone)</option>
+                        <option value="Fotografia">Fotografia</option>
+                        <option value="Criação de Sites">Criação de Sites</option>
                         <option value="Outro">Outro (especifique)</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="local">Local (endereço / ponto de referência):</label>
+                    <input type="text" id="local" name="local" placeholder="Ex.: Praia dos Carneiros, Tamandaré - PE">
                 </div>
                 <div class="form-group">
                     <label for="mensagem">Mensagem (opcional):</label>
                     <textarea id="mensagem" name="mensagem" rows="3" placeholder="Nos conte mais sobre o que você precisa"></textarea>
                 </div>
-                <button type="submit" class="btn">Solicitar Orçamento</button>
+                <button type="submit" class="btn">Solicitar Agendamento</button>
                 <p id="resposta-form" style="margin-top: 15px; display: none;"></p>
             </form>
         </div>
@@ -308,16 +197,6 @@
         <div class="footer-particles" id="footerParticles"></div>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Sobre Nós</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Nossa História</a></li>
-                    <li><a href="#">Equipe</a></li>
-                    <li><a href="#">Depoimentos</a></li>
-                    <li><a href="#">Trabalhe Conosco</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
                 <h3>Serviços</h3>
                 <ul class="footer-links">
                     <li><a href="#">Filmagem Aérea</a></li>
@@ -336,7 +215,7 @@
                 </ul>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/allanmt_dev/?__pwa=1" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -386,17 +265,29 @@
             
             try {
                 // Formata os dados do formulário
+                const telefoneSomenteNumeros = form.telefone.value.replace(/\D/g, '');
+                if (telefoneSomenteNumeros.length < 10) {
+                    resposta.textContent = 'Informe um WhatsApp válido com DDD.';
+                    resposta.style.color = 'red';
+                    resposta.style.display = 'block';
+                    return;
+                }
+
                 const dados = {
                     nome: form.nome.value.trim(),
-                    telefone: form.telefone.value.replace(/\D/g, ''), // Remove formatação
+                    telefone: telefoneSomenteNumeros, // Remove formatação
                     data: form.data.value,
                     hora: form.hora.value,
                     servico: form.servico.value,
-                    mensagem: form.mensagem.value.trim()
+                    mensagem: [
+                        form.local && form.local.value.trim() ? `Local: ${form.local.value.trim()}` : '',
+                        form.mensagem.value.trim()
+                    ].filter(Boolean).join('\n')
                 };
                 
                 // Envia os dados para o servidor
-                const respostaServidor = await fetch('http://localhost:5000/api/agendar', {
+                const apiBase = window.location.protocol.startsWith('http') ? '' : 'http://localhost:5000';
+                const respostaServidor = await fetch(`${apiBase}/api/agendar`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -409,7 +300,7 @@
                 if (resultado.sucesso) {
                     // Sucesso - limpa o formulário e exibe mensagem
                     form.reset();
-                    resposta.textContent = 'Agendamento enviado com sucesso! Entraremos em contado em breve.';
+                    resposta.textContent = 'Agendamento enviado com sucesso! Entraremos em contato em breve.';
                     resposta.style.color = 'green';
                 } else {
                     // Erro no servidor
@@ -424,7 +315,7 @@
             } finally {
                 // Reativa o botão e exibe a mensagem de resposta
                 botao.disabled = false;
-                botao.textContent = 'Solicitar Orçamento';
+                botao.textContent = 'Solicitar Agendamento';
                 resposta.style.display = 'block';
                 
                 // Esconde a mensagem após 10 segundos

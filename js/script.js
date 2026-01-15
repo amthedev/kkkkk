@@ -73,7 +73,7 @@ function closeModal() {
 }
 
 function apiBase() {
-    return window.location.protocol.startsWith('http') ? '' : 'http://localhost:5000';
+    return window.location.protocol.startsWith('http') ? '' : 'http://localhost:80';
 }
 
 function escapeHtml(value) {
